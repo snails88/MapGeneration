@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://11tvgkgelqt2"]
+
+[ext_resource type="PackedScene" uid="uid://dldxewy0havbn" path="res://Scenes/map_generator.tscn" id="1_o4xhs"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MapGenerator" parent="CanvasLayer" instance=ExtResource("1_o4xhs")]
+mapSize = Vector2(500, 600)
+depth = Vector2(5, 7)
+minRoom = 2
+maxRoom = 3
