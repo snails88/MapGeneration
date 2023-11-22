@@ -7,7 +7,13 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MapGenerator" parent="CanvasLayer" instance=ExtResource("1_o4xhs")]
-mapSize = Vector2(500, 600)
-depth = Vector2(5, 7)
-minRoom = 2
-maxRoom = 3
+offset_left = -800.0
+offset_top = -450.0
+offset_right = -800.0
+offset_bottom = -450.0
+mapSize = Vector2(1600, 900)
+gridCount = Vector2(15, 7)
+horizontal = true
+downhillForVertical = false
+pathLoopCount = 6
+shakePosition = 0.02
