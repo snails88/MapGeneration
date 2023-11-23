@@ -18,6 +18,8 @@ var RANDOM_PERCENT = 65
 var grids = []
 var depth = 0
 var breadth = 0
+var selectable = false : set = set_selectable
+var currentRoom = null
 
 func _ready():
 	map.size = mapSize
@@ -25,6 +27,22 @@ func _ready():
 	make_grid()
 	make_path()
 	remove_empty_room()
+	set_selectable(true)
+	
+func select_room(value):
+	set_selectable(false)
+	currentRoom = value
+	# 임시로 바로 선택가능하게 해둠
+	set_selectable(true)
+	
+func set_selectable(value):
+	if currentRoom != null:
+		for i in range(currentRoom.nextRoom.size()):
+			currentRoom.nextRoom[i].set_selectable(value)
+	else:
+		for i in range(breadth):
+			if exist_room(0, i):
+				get_room(0, i).set_selectable(value)
 		
 func make_grid():
 	if horizontal:
@@ -43,10 +61,10 @@ func make_grid():
 			grids[i][j].set_name("Grid[" + str(i + 1) + ", " + str(j + 1) + "]")
 			map.add_child(grids[i][j])
 			var roomInstance = room.instantiate()
+			roomInstance.room_selected.connect(select_room)
 			grids[i][j].add_child(roomInstance)
 			grids[i][j].size = Vector2(map.size.x / gridCount.x, map.size.y / gridCount.y)
-			var sprite = roomInstance.get_child(0)
-			roomInstance.position = Vector2(grids[i][j].size.x * 0.5 - sprite.size.x * 0.5, grids[i][j].size.y * 0.5 - sprite.size.y * 0.5)
+			roomInstance.position = Vector2(grids[i][j].size.x * 0.5, grids[i][j].size.y * 0.5)
 			var rand = [randf_range(-get_viewport_rect().size.x * shakePosition, get_viewport_rect().size.x * shakePosition), randf_range(-get_viewport_rect().size.y * shakePosition, get_viewport_rect().size.y * shakePosition)]
 			roomInstance.position += Vector2(rand[0], rand[1])
 			if horizontal:

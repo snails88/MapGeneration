@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dldxewy0havbn"]
+
+[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="1_ykv07"]
+
+[sub_resource type="GDScript" id="GDScript_oypih"]
+script/source = "extends Panel
+
+var currentRoom = null
+var grids = null
+"
+
+[node name="MapManager" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ykv07")
+
+[node name="Map" type="Panel" parent="."]
+layout_mode = 1
+script = SubResource("GDScript_oypih")
