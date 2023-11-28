@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqrulimqjmt2d"
-path="res://.godot/imported/node_pressed.png-d2f4250a18c1f3cf20d7300514d46d49.ctex"
+uid="uid://b82oii8bbtvwt"
+path="res://.godot/imported/event_pressed.png-dedf1f36c06d708a5709668955e557a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/node_pressed.png"
-dest_files=["res://.godot/imported/node_pressed.png-d2f4250a18c1f3cf20d7300514d46d49.ctex"]
+source_file="res://Resources/Sprites/event_pressed.png"
+dest_files=["res://.godot/imported/event_pressed.png-dedf1f36c06d708a5709668955e557a5.ctex"]
 
 [params]
 

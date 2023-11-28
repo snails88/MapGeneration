@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://citxp3rfiivvh"
-path="res://.godot/imported/node_disable.png-6894cc834987e3dec0b6d02342c80c0a.ctex"
+uid="uid://b7p6dyo6140gd"
+path="res://.godot/imported/monster_normal.png-b89212e06f7784a22bf433a540ec3024.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/node_disable.png"
-dest_files=["res://.godot/imported/node_disable.png-6894cc834987e3dec0b6d02342c80c0a.ctex"]
+source_file="res://Resources/Sprites/monster_normal.png"
+dest_files=["res://.godot/imported/monster_normal.png-b89212e06f7784a22bf433a540ec3024.ctex"]
 
 [params]
 

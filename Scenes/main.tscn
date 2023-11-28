@@ -1,18 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://11tvgkgelqt2"]
+[gd_scene load_steps=26 format=3 uid="uid://11tvgkgelqt2"]
 
 [ext_resource type="PackedScene" uid="uid://dldxewy0havbn" path="res://Scenes/map_manager.tscn" id="1_o4xhs"]
+[ext_resource type="Texture2D" uid="uid://b7p6dyo6140gd" path="res://Resources/Sprites/monster_normal.png" id="2_7uof6"]
+[ext_resource type="Texture2D" uid="uid://bhhvvuk8h4ny7" path="res://Resources/Sprites/event_normal.png" id="3_dr555"]
+[ext_resource type="Texture2D" uid="uid://b8sf0cq05b8ek" path="res://Resources/Sprites/store_normal.png" id="4_ceflw"]
+[ext_resource type="Texture2D" uid="uid://cloikf04kkhpp" path="res://Resources/Sprites/rest_normal.png" id="5_f1v4i"]
+[ext_resource type="Texture2D" uid="uid://dkqtget0rq8x7" path="res://Resources/Sprites/elite_normal.png" id="6_nqiv8"]
+[ext_resource type="Texture2D" uid="uid://b4kbhk4voc0jx" path="res://Resources/Sprites/tresure_normal.png" id="7_ciwlx"]
+[ext_resource type="Texture2D" uid="uid://crbr4ncbj4ote" path="res://Resources/Sprites/monster_pressed.png" id="8_1a6am"]
+[ext_resource type="Texture2D" uid="uid://b82oii8bbtvwt" path="res://Resources/Sprites/event_pressed.png" id="9_yux15"]
+[ext_resource type="Texture2D" uid="uid://b2rdoqsj3pwew" path="res://Resources/Sprites/store_pressed.png" id="10_e6khv"]
+[ext_resource type="Texture2D" uid="uid://bs4rqbwm86nda" path="res://Resources/Sprites/rest_pressed.png" id="11_tnbdk"]
+[ext_resource type="Texture2D" uid="uid://d3hoyp15w3ucr" path="res://Resources/Sprites/elite_pressed.png" id="12_eqtwd"]
+[ext_resource type="Texture2D" uid="uid://0wayi522vdq6" path="res://Resources/Sprites/tresure_pressed.png" id="13_jpjqq"]
+[ext_resource type="Texture2D" uid="uid://dd6ddpxg08ne" path="res://Resources/Sprites/monster_hover.png" id="14_ujfcl"]
+[ext_resource type="Texture2D" uid="uid://dvgm4tulamti1" path="res://Resources/Sprites/event_hover.png" id="15_0wt5o"]
+[ext_resource type="Texture2D" uid="uid://cf5kev5gna0ku" path="res://Resources/Sprites/store_hover.png" id="16_0e0uv"]
+[ext_resource type="Texture2D" uid="uid://cs3fn1rg6fver" path="res://Resources/Sprites/rest_hover.png" id="17_5hg1p"]
+[ext_resource type="Texture2D" uid="uid://cijcbc1kwoijx" path="res://Resources/Sprites/elite_hover.png" id="18_rbeh1"]
+[ext_resource type="Texture2D" uid="uid://vu325pb0ikek" path="res://Resources/Sprites/tresure_hover.png" id="19_0ybjx"]
+[ext_resource type="Texture2D" uid="uid://vvytm6eho2e7" path="res://Resources/Sprites/monster_disable.png" id="20_modpn"]
+[ext_resource type="Texture2D" uid="uid://dbvv5piebxq1s" path="res://Resources/Sprites/event_disable.png" id="21_iygn6"]
+[ext_resource type="Texture2D" uid="uid://dyc640up25w0w" path="res://Resources/Sprites/store_disable.png" id="22_aiuha"]
+[ext_resource type="Texture2D" uid="uid://dwr3wb0wcrdam" path="res://Resources/Sprites/rest_disable.png" id="23_rbbwl"]
+[ext_resource type="Texture2D" uid="uid://c53b5dklhiwx8" path="res://Resources/Sprites/elite_disable.png" id="24_e5byj"]
+[ext_resource type="Texture2D" uid="uid://4m4fr1aoilku" path="res://Resources/Sprites/treasure_disable.png" id="25_gyivi"]
 
 [node name="Main" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MapGenerator" parent="CanvasLayer" instance=ExtResource("1_o4xhs")]
+[node name="MapManager" parent="CanvasLayer" instance=ExtResource("1_o4xhs")]
 offset_left = -800.0
 offset_top = -450.0
 offset_right = -800.0
 offset_bottom = -450.0
-mapSize = Vector2(800, 900)
-gridCount = Vector2(6, 8)
+mapSize = Vector2(1600, 900)
+gridCount = Vector2(15, 7)
+horizontal = true
 downhillForVertical = false
-pathLoopCount = 5
+pathLoopCount = 6
 shakePosition = 0.02
+type = Array[String](["Enemy", "Event", "Store", "Rest", "Elite", "Treasure"])
+probability = Array[int]([100, 30, 20, 15, 20, 1])
+floor = Array[int]([15, 7])
+roomType = Array[String](["Rest", "Treasure"])
+ignoreFloor = Array[int]([1, 1, 1, 14])
+ignoreType = Array[String](["Store", "Elite", "Rest", "Rest"])
+normal = Array[Texture2D]([ExtResource("2_7uof6"), ExtResource("3_dr555"), ExtResource("4_ceflw"), ExtResource("5_f1v4i"), ExtResource("6_nqiv8"), ExtResource("7_ciwlx")])
+pressed = Array[Texture2D]([ExtResource("8_1a6am"), ExtResource("9_yux15"), ExtResource("10_e6khv"), ExtResource("11_tnbdk"), ExtResource("12_eqtwd"), ExtResource("13_jpjqq")])
+hover = Array[Texture2D]([ExtResource("14_ujfcl"), ExtResource("15_0wt5o"), ExtResource("16_0e0uv"), ExtResource("17_5hg1p"), ExtResource("18_rbeh1"), ExtResource("19_0ybjx")])
+disabled = Array[Texture2D]([ExtResource("20_modpn"), ExtResource("21_iygn6"), ExtResource("22_aiuha"), ExtResource("23_rbbwl"), ExtResource("24_e5byj"), ExtResource("25_gyivi")])

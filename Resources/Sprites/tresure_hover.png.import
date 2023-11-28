@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd6gx3xt2jkyw"
-path="res://.godot/imported/node_normal.png-635bbb2114087b0e470980900f2e927e.ctex"
+uid="uid://vu325pb0ikek"
+path="res://.godot/imported/tresure_hover.png-44fd4cc45fee8fe9d35b7a341e28196b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/node_normal.png"
-dest_files=["res://.godot/imported/node_normal.png-635bbb2114087b0e470980900f2e927e.ctex"]
+source_file="res://Resources/Sprites/tresure_hover.png"
+dest_files=["res://.godot/imported/tresure_hover.png-44fd4cc45fee8fe9d35b7a341e28196b.ctex"]
 
 [params]
 
