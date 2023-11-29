@@ -25,8 +25,8 @@ var RANDOM_PERCENT = 65
 
 # 고정할 층, 종류
 @export_subgroup("Fixed Room")
-@export var floor: Array[int]
-@export var roomType: Array[String]
+@export var fixedFloor: Array[int]
+@export var fixedType: Array[String]
 
 @export_subgroup("Anti Fixed Room")
 @export var ignoreFloor: Array[int]
@@ -152,14 +152,14 @@ func remove_empty_room():
 		
 
 func select_room_type(_depth, _instance):
-	for i in range(floor.size()):
-		if floor[i] == _depth + 1:
+	for i in range(fixedFloor.size()):
+		if fixedFloor[i] == _depth + 1:
 			var texIndex = 0
 			for j in range(type.size()):
-				if type[j] == roomType[i]:
+				if type[j] == fixedType[i]:
 					texIndex = j
 					break
-			_instance.set_type(roomType[i], normal[texIndex], pressed[texIndex], hover[texIndex], disabled[texIndex])
+			_instance.set_type(fixedType[i], normal[texIndex], pressed[texIndex], hover[texIndex], disabled[texIndex])
 			return
 	
 	var totalP = 0
