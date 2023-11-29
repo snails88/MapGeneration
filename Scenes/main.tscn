@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://11tvgkgelqt2"]
+[gd_scene load_steps=30 format=3 uid="uid://11tvgkgelqt2"]
 
 [ext_resource type="PackedScene" uid="uid://dldxewy0havbn" path="res://Scenes/map_manager.tscn" id="1_o4xhs"]
 [ext_resource type="Texture2D" uid="uid://b7p6dyo6140gd" path="res://Resources/Sprites/monster_normal.png" id="2_7uof6"]
@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://dwr3wb0wcrdam" path="res://Resources/Sprites/rest_disable.png" id="23_rbbwl"]
 [ext_resource type="Texture2D" uid="uid://c53b5dklhiwx8" path="res://Resources/Sprites/elite_disable.png" id="24_e5byj"]
 [ext_resource type="Texture2D" uid="uid://4m4fr1aoilku" path="res://Resources/Sprites/treasure_disable.png" id="25_gyivi"]
+[ext_resource type="Texture2D" uid="uid://bxh8xmupllsla" path="res://Resources/Sprites/boss_normal.png" id="26_emque"]
+[ext_resource type="Texture2D" uid="uid://b1j6xwq3d7ac8" path="res://Resources/Sprites/boss_pressed.png" id="27_0053q"]
+[ext_resource type="Texture2D" uid="uid://mpyywl3my3cr" path="res://Resources/Sprites/boss_hover.png" id="28_owqd1"]
+[ext_resource type="Texture2D" uid="uid://bs27j3ji876ec" path="res://Resources/Sprites/boss_disable.png" id="29_uunds"]
 
 [node name="Main" type="Node2D"]
 
@@ -38,16 +42,15 @@ offset_bottom = -450.0
 mapSize = Vector2(1600, 900)
 gridCount = Vector2(15, 7)
 horizontal = true
-downhillForVertical = false
 pathLoopCount = 6
-shakePosition = 0.02
-type = Array[String](["Enemy", "Event", "Store", "Rest", "Elite", "Treasure"])
-probability = Array[int]([100, 30, 20, 15, 20, 1])
+shakePosition = 0.015
+type = Array[String](["Enemy", "Event", "Store", "Rest", "Elite", "Treasure", "Boss"])
+probability = Array[int]([100, 30, 20, 15, 20, 0, 0])
 floor = Array[int]([15, 7])
 roomType = Array[String](["Rest", "Treasure"])
 ignoreFloor = Array[int]([1, 1, 1, 14])
 ignoreType = Array[String](["Store", "Elite", "Rest", "Rest"])
-normal = Array[Texture2D]([ExtResource("2_7uof6"), ExtResource("3_dr555"), ExtResource("4_ceflw"), ExtResource("5_f1v4i"), ExtResource("6_nqiv8"), ExtResource("7_ciwlx")])
-pressed = Array[Texture2D]([ExtResource("8_1a6am"), ExtResource("9_yux15"), ExtResource("10_e6khv"), ExtResource("11_tnbdk"), ExtResource("12_eqtwd"), ExtResource("13_jpjqq")])
-hover = Array[Texture2D]([ExtResource("14_ujfcl"), ExtResource("15_0wt5o"), ExtResource("16_0e0uv"), ExtResource("17_5hg1p"), ExtResource("18_rbeh1"), ExtResource("19_0ybjx")])
-disabled = Array[Texture2D]([ExtResource("20_modpn"), ExtResource("21_iygn6"), ExtResource("22_aiuha"), ExtResource("23_rbbwl"), ExtResource("24_e5byj"), ExtResource("25_gyivi")])
+normal = Array[Texture2D]([ExtResource("2_7uof6"), ExtResource("3_dr555"), ExtResource("4_ceflw"), ExtResource("5_f1v4i"), ExtResource("6_nqiv8"), ExtResource("7_ciwlx"), ExtResource("26_emque")])
+pressed = Array[Texture2D]([ExtResource("8_1a6am"), ExtResource("9_yux15"), ExtResource("10_e6khv"), ExtResource("11_tnbdk"), ExtResource("12_eqtwd"), ExtResource("13_jpjqq"), ExtResource("27_0053q")])
+hover = Array[Texture2D]([ExtResource("14_ujfcl"), ExtResource("15_0wt5o"), ExtResource("16_0e0uv"), ExtResource("17_5hg1p"), ExtResource("18_rbeh1"), ExtResource("19_0ybjx"), ExtResource("28_owqd1")])
+disabled = Array[Texture2D]([ExtResource("20_modpn"), ExtResource("21_iygn6"), ExtResource("22_aiuha"), ExtResource("23_rbbwl"), ExtResource("24_e5byj"), ExtResource("25_gyivi"), ExtResource("29_uunds")])

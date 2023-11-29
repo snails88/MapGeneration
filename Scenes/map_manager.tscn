@@ -19,6 +19,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ykv07")
+bossMargin = 200.0
 
 [node name="Map" type="Panel" parent="."]
 layout_mode = 1

@@ -35,7 +35,7 @@ func set_type(_value, _normal, _pressed, _hover, _disabled):
 	get_child(0).texture_pressed = _pressed
 	get_child(0).texture_hover = _hover
 	get_child(0).texture_disabled = _disabled
-	
+	get_child(0).position = Vector2(-_normal.get_size().x * 0.5, -_normal.get_size().y * 0.5)
 
 func _on_button_pressed():
 	emit_signal("room_selected", self)

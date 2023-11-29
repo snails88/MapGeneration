@@ -14,6 +14,10 @@ var RANDOM_PERCENT = 65
 @export var maxSideRange = 1
 @export var shakePosition = 0.01
 
+@export_subgroup("Boss")
+@export var existBoss = true
+@export var bossMargin = 0.0
+
 # 종류, 확률
 @export_subgroup("Room Type")
 @export var type: Array[String]
@@ -42,6 +46,7 @@ var depth = 0
 var breadth = 0
 var selectable = false : set = set_selectable
 var currentRoom = null
+var bossRoom = null
 
 func _ready():
 	map.size = mapSize
@@ -67,12 +72,20 @@ func set_selectable(_value):
 				get_room(0, i).set_selectable(_value)
 		
 func make_grid():
+	var marginX = 0
+	var marginY = 0
 	if horizontal:
 		depth = gridCount.x
 		breadth = gridCount.y
+		if existBoss:
+			gridCount.x += 1
+			marginX = bossMargin
 	else:
 		depth = gridCount.y
 		breadth = gridCount.x
+		if existBoss:
+			gridCount.y += 1
+			marginY = bossMargin
 		
 	for i in range(depth):
 		grids.append([])
@@ -86,17 +99,37 @@ func make_grid():
 			roomInstance.room_selected.connect(select_room)
 			select_room_type(i, roomInstance)
 			grids[i][j].add_child(roomInstance)
-			grids[i][j].size = Vector2(map.size.x / gridCount.x, map.size.y / gridCount.y)
+			grids[i][j].size = Vector2((map.size.x - marginX) / gridCount.x, (map.size.y - marginY) / gridCount.y)
 			roomInstance.position = Vector2(grids[i][j].size.x * 0.5, grids[i][j].size.y * 0.5)
 			var rand = [randf_range(-get_viewport_rect().size.x * shakePosition, get_viewport_rect().size.x * shakePosition), randf_range(-get_viewport_rect().size.y * shakePosition, get_viewport_rect().size.y * shakePosition)]
 			roomInstance.position += Vector2(rand[0], rand[1])
 			if horizontal:
-				grids[i][j].position = Vector2(map.size.x / gridCount.x * i, map.size.y / gridCount.y * j)
+				grids[i][j].position = Vector2((map.size.x - marginX) / gridCount.x * i, map.size.y / gridCount.y * j)
 			else:
 				if downhillForVertical:
-					grids[i][j].position = Vector2(map.size.x / gridCount.x * j, map.size.y / gridCount.y * i)
+					grids[i][j].position = Vector2(map.size.x / gridCount.x * j, (map.size.y - marginY) / gridCount.y * i)
 				else:
-					grids[i][j].position = Vector2(map.size.x / gridCount.x * j, map.size.y - map.size.y / gridCount.y * (i + 1))
+					grids[i][j].position = Vector2(map.size.x / gridCount.x * j, map.size.y - (map.size.y - marginY) / gridCount.y * (i + 1))
+		
+	if existBoss:
+		var bossIndex = -1
+		for i in range(type.size()):
+			if type[i] == "Boss":
+				bossIndex = i
+				break
+
+		if bossIndex >= 0:
+			bossRoom = room.instantiate()
+			bossRoom.set_type("Boss", normal[bossIndex], pressed[bossIndex], hover[bossIndex], disabled[bossIndex])
+			bossRoom.room_selected.connect(select_room)
+			map.add_child(bossRoom)
+			if horizontal:
+				bossRoom.position = Vector2(mapSize.x - (mapSize.x / gridCount.x) * 0.5 - (marginX * 0.5), mapSize.y * 0.5)
+			else:
+				if downhillForVertical:
+					bossRoom.position = Vector2(mapSize.x * 0.5, mapSize.y - (mapSize.y / gridCount.y) * 0.5 - (marginY * 0.5))
+				else:
+					bossRoom.position = Vector2(mapSize.x * 0.5, marginY * 0.5 + (mapSize.y / gridCount.y) * 0.5)
 
 func make_path():
 	for i in range(pathLoopCount):
@@ -106,6 +139,10 @@ func make_path():
 			curRoomIndex = randi_range(curRoomIndex - maxSideRange, curRoomIndex + maxSideRange)
 			curRoomIndex = clampi(curRoomIndex, 0, breadth - 1)
 			curRoom.add_path(get_room(j + 1, curRoomIndex))
+			if j == depth - 2 and existBoss:
+				curRoom = get_room(j + 1, curRoomIndex)
+				curRoom.add_path(bossRoom)
+			
 	
 func remove_empty_room():
 	for i in range(depth):
